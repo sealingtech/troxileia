@@ -18,7 +18,7 @@ spec:
       containers:
       - name: controller
         imagePullPolicy: Always
-        image: gcr.io/edcop-dev/mbaker:v6
+        image: gcr.io/edcop-dev/mbaker:v4
         envFrom:
           - configMapRef:
               name: controller-config
