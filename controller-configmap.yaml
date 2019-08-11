@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: controller-config
+  namespace: kube-system
+data:
+  ip: "tap_ip_here"
+  username: "username_here"
+  password: "password_here"
+  tap_type: "gigamon"
+  app_label: "bro"
+  timeout: "300"
