@@ -26,13 +26,13 @@ kubectl label nodes k8s-worker-1 sensor="true"
 The sensor label can be left off and added later, or initially set to false if they may be monitored later.
 
 To run locally:
-
 ```
 python main.py
 ```
 
-To deploy as a pod in cluster in kube-system namespace:
 
+To deploy as a pod in cluster in kube-system namespace:
+First you must set the variables in controller-configmap.yaml
 ```
 kubectl apply -f troxileia.yaml
 ```
