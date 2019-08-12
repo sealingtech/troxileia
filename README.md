@@ -9,7 +9,9 @@ Requirements
 ============
 
 Kubernetes 14.0+
+
 Python 3.0+ (If ran locally)
+
 Python Kubernetes libarary (If ran locally)
 
 How to Use
@@ -24,10 +26,13 @@ kubectl label nodes k8s-worker-1 sensor="true"
 The sensor label can be left off and added later, or initially set to false if they may be monitored later.
 
 To run locally:
+
 ```
 python main.py
 ```
+
 To deploy as a pod in cluster in kube-system namespace:
+
 ```
 kubectl apply -f troxileia.yaml
 ```
