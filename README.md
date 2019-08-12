@@ -19,5 +19,6 @@ Troxileia is currently only compatible with Gigamon Gigavue network taps. Commun
 
 To function with a Kubernetes cluser, use of a sensor label and port label are required in the form of:
 
-sensor="true" or senesor "false"
+sensor="true" or sensor"false"
+
 port="1_1_x1" for a port 1/1/x1
