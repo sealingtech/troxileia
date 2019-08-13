@@ -13,7 +13,9 @@ Kubernetes 14.0+
 Python 3.0+ (If ran locally)
 
 Python Kubernetes library (If ran locally)
-
+```
+pip install kubernetes
+```
 How to Use
 ==========
 
