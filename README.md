@@ -32,7 +32,13 @@ python main.py
 
 
 To deploy as a pod in cluster in kube-system namespace:
-First you must set the variables in controller-configmap.yaml
+
+First the variables in controller-configmap.yaml must be set.
+Then the configmap must be applied to the cluser:
 ```
-kubectl apply -f troxileia.yaml
+kubectl apply -f controller-configmap.yaml
+```
+Then to deploy:
+```
+kubectl apply troxileia.yaml
 ```
