@@ -8,7 +8,7 @@ Troxileia is a Kubernetes controller that reconfigures a network tap if pods are
 Requirements
 ============
 
-Kubernetes 14.0+
+Kubernetes (tested on 1.15)
 
 Python 3.0+ (If ran locally)
 
@@ -27,7 +27,7 @@ kubectl label nodes k8s-worker-1 sensor="true"
 ```
 The sensor label can be left off and added later, or initially set to false if they may be monitored later.
 
-First the variables in controller-configmap.yaml must be set.
+First the variables in controller-configmap.yaml must be set. Edit those to match your setup
 Then the configmap must be applied to the cluser:
 ```
 kubectl apply -f controller-configmap.yaml
@@ -44,6 +44,3 @@ python main.py
 ```
 kubectl apply troxileia.yaml
 ```
-
-![Picture here](diagram.jpg "Thread Diagram")
-
