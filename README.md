@@ -44,3 +44,6 @@ python main.py
 ```
 kubectl apply troxileia.yaml
 ```
+
+![Picture here](diagram.jpg "Thread Diagram")
+
