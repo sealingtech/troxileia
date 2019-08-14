@@ -27,6 +27,12 @@ kubectl label nodes k8s-worker-1 sensor="true"
 ```
 The sensor label can be left off and added later, or initially set to false if they may be monitored later.
 
+First the variables in controller-configmap.yaml must be set.
+Then the configmap must be applied to the cluser:
+```
+kubectl apply -f controller-configmap.yaml
+```
+
 ### To run locally:
 ```
 python main.py
@@ -35,12 +41,6 @@ python main.py
 
 ### To deploy as a pod in cluster in kube-system namespace:
 
-First the variables in controller-configmap.yaml must be set.
-Then the configmap must be applied to the cluser:
-```
-kubectl apply -f controller-configmap.yaml
-```
-Then to deploy:
 ```
 kubectl apply troxileia.yaml
 ```
