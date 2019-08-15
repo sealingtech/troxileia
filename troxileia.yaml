@@ -1,6 +1,4 @@
-#Start with Centos for the package source
 FROM centos:centos7
-#Who maintains the image (could be your email)
 MAINTAINER Stech Training
 
 RUN yum -y update \
