@@ -34,6 +34,10 @@ Then the configmap must be applied to the cluser:
 kubectl apply -f troxileia-configmap.yaml
 kubectl apply -f troxileia-secret.yaml
 ```
+To get rid of plain-text username and password stored in secret yaml file:
+```
+rm troxileia-secret.yaml
+```
 
 ### To run locally:
 ```
