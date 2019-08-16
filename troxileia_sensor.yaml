@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: trox-secret
+  namespace: kube-system
+data:
+  #Username to log into the tap
+  username: "base_64_username"
+  #Password to log into the tap
+  password: "base_64_password"
