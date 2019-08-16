@@ -157,4 +157,3 @@ def thread_func(pod_name, queue, timeout, port_list, tap):
 
     except:
         print(pod_name +  " on " + host_name + " (" +  port + ") was terminated, no action required")
-    print("exiting thread...")
