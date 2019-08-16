@@ -25,11 +25,15 @@ def get_sensored_ports():
 def get_secret_vars():
     """
     Reads in secret  variables for tap
-    returns: dictionary  consisting of ip, username, password
+    returns: dictionary  consisting of username, password
     """
     return client.CoreV1Api().list_namespaced_secret(field_selector="metadata.name=trox-secret", namespace="kube-system").items[0].data
 
 def get_configmap_vars():
+    """
+    Reads in configmap  variables
+    returns: dictionary  consisting of ip, tap_type, timeout, app_label
+    """
     return client.CoreV1Api().list_namespaced_config_map(field_selector="metadata.name=trox-map", namespace="kube-system").items[0].data
 
 class tap:
