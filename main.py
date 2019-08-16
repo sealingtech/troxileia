@@ -3,6 +3,7 @@ import gigamon
 import sensor_controller
 import pod_controller
 import threading
+import base64
 
 def get_sensored_ports():
     """
@@ -21,13 +22,15 @@ def get_sensored_ports():
 
     return port_list
 
-def get_configmap_vars():
+def get_secret_vars():
     """
-    Reads in configmap  variables for tap
+    Reads in secret  variables for tap
     returns: dictionary  consisting of ip, username, password
     """
-    config_map = client.CoreV1Api().list_namespaced_config_map(field_selector="metadata.name=controller-config", namespace="kube-system").items[0]
-    return config_map.data
+    return client.CoreV1Api().list_namespaced_secret(field_selector="metadata.name=trox-secret", namespace="kube-system").items[0].data
+
+def get_configmap_vars():
+    return client.CoreV1Api().list_namespaced_config_map(field_selector="metadata.name=trox-map", namespace="kube-system").items[0].data
 
 class tap:
     """
@@ -41,19 +44,21 @@ class tap:
         :param tap_type: type of netowrk tap
         """
         self.lock = threading.Lock()
-        self.var_dict = get_configmap_vars()
+        self.var_dict = get_secret_vars()
+        self.config_map = get_configmap_vars()
+
     def reconfigure(self, port_list):
         """
         Reconfigures the tap with a given port_list
         :param port_list: list of ports to distribute load across
         """
         #Check type of tap
-        if self.var_dict["tap_type"] == "gigamon":
+        if self.config_map["tap_type"] == "gigamon":
             for port in port_list:
                 port.replace("_", "/")
             print("Reconfiguring for: ", port_list)
             self.lock.acquire()
-            gigamon.reconfigure_gigamon(self.var_dict["ip"], self.var_dict["username"], self.var_dict["password"], port_list, "sensor_map", "net_group", "sensor_stream")
+            gigamon.reconfigure_gigamon(self.config_map["ip"], base64.b64decode(self.var_dict["username"]).decode("utf-8"), base64.b64decode(self.var_dict["password"]).decode("utf-8"), port_list, "sensor_map", "net_group", "sensor_stream")
             self.lock.release()
 
 class locked_list:
@@ -118,7 +123,6 @@ if __name__=="__main__":
         config.load_incluster_config()
     except:
         config.load_kube_config()
-
     tap = tap()
     port_list = locked_list(get_sensored_ports())
     tap.reconfigure(port_list.get_list())
