@@ -9,10 +9,11 @@ def _wait_for_execution(channel, string_check):
     :param channel: Paramiko channel connected to Giamon
     :string_check: String to check the stream for to signal prompt
     """
-    while True:
+    check = False
+    while not check:
         output = channel.recv(1024).decode("utf-8")
         if output[0-len(string_check):] == string_check:
-            break
+            check = True
 
 def make_passall_map(channel, map_name, from_group, to_group):
     """
