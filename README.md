@@ -38,7 +38,11 @@ To get rid of plain-text username and password stored in secret yaml file:
 ```
 rm troxileia-secret.yaml
 ```
+If using RBAC, give proper permissions:
 
+```
+kubectl create clusterrolebinding troxileiaClusterRoleBinding --clusterrole=cluster-admin --serviceaccount=kube-system:default
+```
 ### To run locally:
 ```
 python main.py
