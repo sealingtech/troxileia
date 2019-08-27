@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: trox-map
+  namespace: kube-system
+data:
+  #IP address of the network tap
+  ip: "172.16.250.203"
+  #Type of tap. Currently only gigamon is supported
+  tap_type: "gigamon"
+  #app label of pods to watch
+  app_label: "dbtraining,webtraining"
+  #Seconds to wait to see if pod is ready
+  timeout: "300"
