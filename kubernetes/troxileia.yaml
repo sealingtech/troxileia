@@ -18,6 +18,6 @@ spec:
       containers:
       - name: troxileia
         imagePullPolicy: Always
-        image: gcr.io/edcop-dev/mbaker:v1
+        image: gcr.io/edcop-dev/troxileia:v1
       restartPolicy: Always
       dnsPolicy: ClusterFirst
