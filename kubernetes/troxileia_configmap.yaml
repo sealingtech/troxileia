@@ -5,10 +5,12 @@ metadata:
   namespace: kube-system
 data:
   #IP address of the network tap
-  ip: "172.16.250.203"
+  ip: "ip_of_tap_here"
   #Type of tap. Currently only gigamon is supported
   tap_type: "gigamon"
   #app label of pods to watch
-  app_label: "dbtraining,webtraining"
+  #examples: 1 app: "app1"
+  #          2 apps: "app1,app2"
+  app_label: "bro"
   #Seconds to wait to see if pod is ready
   timeout: "300"

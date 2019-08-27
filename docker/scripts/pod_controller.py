@@ -70,7 +70,7 @@ def watch_pods(tap, port_list):
     api = client.CoreV1Api()
 
     queue = locking_queue()
-    var_dict = config_map = client.CoreV1Api().list_namespaced_config_map(field_selector="metadata.name=controller-config", namespace="kube-system").items[0].data
+    var_dict = config_map = client.CoreV1Api().list_namespaced_config_map(field_selector="metadata.name=trox-map", namespace="kube-system").items[0].data
     timeout = var_dict["timeout"]
     app_label = var_dict["app_label"]
     app_selector = "app in(" + app_label + ")"
